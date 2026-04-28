@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+os.environ["YOLO_CONFIG_DIR"]="/tmp/Ultralytics"
 from ultralytics import YOLO
 import cv2
 import tempfile
@@ -116,7 +118,8 @@ def process_frame(frame):
         frame = apply_clahe(frame)
 
     # ===== MAIN MODEL =====
-    results = model(frame, conf=conf)
+    model = load_model()
+    results = model.predict(frame)
 
     detections = filter_boxes(results)
     update_history(detections)
