@@ -20,9 +20,9 @@ MODEL_PATH = "best.pt"
 
 # ================= EMAIL =================
 def send_email_alert(detected_objects, image_path):
-    sender = "suyash.bagale@gmail.com"
-    password = "rxkljclybigcrwnu"
-    receiver = "suyash@anatechconsultancy.com"
+    sender = st.secrets["EMAIL_USER"]
+    password = st.secrets["EMAIL_PASS"]
+    receiver = st.secrets["EMAIL_RECEIVER"]
 
     msg = MIMEMultipart()
     msg["From"] = sender
