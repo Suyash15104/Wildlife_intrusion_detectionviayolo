@@ -18,6 +18,9 @@ from habitat import detect_habitat
 # ================= CONFIG =================
 MODEL_PATH = "best.pt"
 
+@st.cache_resource
+def load_model():
+    return YOLO("best.pt")
 # ================= EMAIL =================
 def send_email_alert(detected_objects, image_path):
     sender = st.secrets["EMAIL_USER"]
@@ -48,7 +51,6 @@ def send_email_alert(detected_objects, image_path):
 
 
 # ================= MODEL =================
-model = YOLO(MODEL_PATH)
 
 # ================= UI =================
 st.set_page_config(layout="wide")
