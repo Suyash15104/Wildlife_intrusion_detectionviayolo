@@ -1,6 +1,6 @@
-from streamlit import st
+import streamlit as st
 import os
-os.environ["YOLO_CONFIG_DIR"]="/tmp/Ultralytics"
+os.environ["YOLO_CONFIG_DIR"] = "/tmp/Ultralytics"
 from ultralytics import YOLO
 
 # Load once
