@@ -1,13 +1,18 @@
+from streamlit import st
+
 from ultralytics import YOLO
 
 # Load once
-model_habitat = YOLO("yolov8n.pt")
+@st.cache_resource
+def load_models():
+    return YOLO("yolov8n.pt")
 
 # COCO class IDs for habitat
 HABITAT_CLASSES = [1, 2, 3, 7]  # bicycle, car, motorcycle, truck
 
 
 def detect_habitat(frame):
+    model_habitat = load_models()
     results = model_habitat(frame)
 
     habitat_count = 0
